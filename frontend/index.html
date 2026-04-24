@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema de Turnos - Barbería</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="barber-pole-strip"></div>
+
+    <div class="header-content">
+      <div class="header-emblem">✂</div>
+      <h1 class="main-heading">Sistema de Turnos para Barbería</h1>
+      <p class="subtitle">Gestión de turnos aplicando el Patrón State</p>
+    </div>
+
+    <div class="barber-pole-strip"></div>
+  </header>
+
+  <main class="main-container">
+    <section class="card" aria-label="Formulario de nuevo turno">
+      <div class="card-header">
+        <span class="section-number">01</span>
+        <h2 class="section-title">Nuevo Turno</h2>
+      </div>
+
+      <div class="card-body">
+        <form id="appointmentForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="customerName">Nombre del cliente</label>
+              <input type="text" id="customerName" name="customerName" placeholder="Ej. Carlos Pérez" autocomplete="off" required />
+            </div>
+
+            <div class="form-group">
+              <label for="barberName">Nombre del barbero</label>
+              <input type="text" id="barberName" name="barberName" placeholder="Ej. Miguel Torres" autocomplete="off" required />
+            </div>
+
+            <div class="form-group">
+              <label for="serviceName">Servicio solicitado</label>
+              <input type="text" id="serviceName" name="serviceName" placeholder="Ej. Corte de cabello" autocomplete="off" required />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button id="createAppointmentButton" type="submit" class="btn btn-primary">+ Crear turno</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Lista de turnos">
+      <div class="card-header">
+        <span class="section-number">02</span>
+        <h2 class="section-title">Lista de Turnos</h2>
+        <span id="apiStatus" class="api-status">Verificando backend...</span>
+      </div>
+
+      <div class="card-body">
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Barbero</th>
+                <th>Servicio</th>
+                <th>Estado</th>
+                <th>Fecha de creación</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="appointmentsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="card card--messages" aria-label="Mensajes del sistema">
+      <div class="card-header">
+        <span class="section-number">03</span>
+        <h2 class="section-title">Mensajes del Sistema</h2>
+      </div>
+      <div id="messageBox" class="card-body message-box"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Patrón de Diseño State &mdash; Taller Universitario &mdash; 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

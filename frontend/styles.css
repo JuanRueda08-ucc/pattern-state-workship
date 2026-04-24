@@ -1,0 +1,686 @@
+/* ===================================================
+   BarberShopQueueFrontend — styles.css  (Final)
+   Aesthetic: Dark header + clean white cards
+   Color palette: charcoal header, red accent, white surfaces
+   =================================================== */
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  /* Page background */
+  --color-bg-page:     #ede9e3;
+
+  /* Header (dark) */
+  --color-header-bg:   #111111;
+  --color-header-text: #f0e9d6;
+  --color-gold:        #c9a84c;
+
+  /* Card surfaces (light) */
+  --color-surface:     #ffffff;
+  --color-surface-alt: #f7f5f2;
+  --color-border:      #e0dbd2;
+
+  /* Text inside cards */
+  --color-text:        #1e1a17;
+  --color-text-muted:  #9a9087;
+  --color-text-label:  #6b6058;
+
+  /* Accent */
+  --color-red:         #c0392b;
+  --color-red-light:   #e74c3c;
+
+  /* Semantic action colors */
+  --color-info:          #2980b9;
+  --color-info-light:    #3498db;
+  --color-warning:       #d68910;
+  --color-warning-light: #f0a500;
+  --color-success:       #1e8449;
+  --color-success-light: #27ae60;
+  --color-danger:        #c0392b;
+  --color-danger-light:  #e74c3c;
+
+  /* Fonts */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
+  --font-body:    'DM Sans', sans-serif;
+
+  /* Layout */
+  --radius:           8px;
+  --radius-sm:        5px;
+  --shadow-card:      0 2px 12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.06);
+  --transition:       0.2s ease;
+  --container-width:  920px;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Base ---------- */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg-page);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =====================================================
+   HEADER — dark
+   ===================================================== */
+
+.site-header {
+  background-color: var(--color-header-bg);
+  text-align: center;
+}
+
+/* Classic barber pole diagonal-stripe band */
+.barber-pole-strip {
+  height: 8px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-red)  0px,
+    var(--color-red)  8px,
+    #ffffff           8px,
+    #ffffff           16px,
+    #1a5276           16px,
+    #1a5276           24px
+  );
+}
+
+.header-content {
+  padding: 2.25rem 1.5rem 2rem;
+}
+
+.header-emblem {
+  font-size: 2.5rem;
+  color: var(--color-gold);
+  display: block;
+  margin-bottom: 0.6rem;
+  animation: fadeSlideDown 0.55s ease both;
+}
+
+.main-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 4vw, 2.5rem);
+  font-weight: 900;
+  color: var(--color-header-text);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  animation: fadeSlideDown 0.65s ease 0.08s both;
+}
+
+.subtitle {
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--color-gold);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  animation: fadeSlideDown 0.65s ease 0.16s both;
+}
+
+/* =====================================================
+   MAIN CONTAINER
+   ===================================================== */
+
+.main-container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+/* =====================================================
+   CARDS — white with subtle shadow
+   ===================================================== */
+
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--color-red);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  animation: fadeSlideUp 0.45s ease both;
+}
+
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.12s; }
+.card:nth-child(3) { animation-delay: 0.19s; }
+
+.card--messages {
+  border-top-color: var(--color-gold);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.85rem 1.4rem;
+  background-color: var(--color-surface-alt);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section-number {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--color-red);
+  background-color: rgba(192, 57, 43, 0.08);
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid rgba(192, 57, 43, 0.25);
+  white-space: nowrap;
+  letter-spacing: 0.08em;
+}
+
+.card--messages .section-number {
+  color: var(--color-warning);
+  background-color: rgba(214, 137, 16, 0.08);
+  border-color: rgba(214, 137, 16, 0.25);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.01em;
+}
+
+.card-body {
+  padding: 1.5rem 1.4rem;
+}
+
+/* =====================================================
+   API STATUS INDICATOR
+   ===================================================== */
+
+.api-status {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  /* default / checking state */
+  background-color: #f0f0f0;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.api-status--connected {
+  background-color: #eafaf1;
+  color: var(--color-success);
+  border-color: #a9dfbf;
+}
+
+.api-status--disconnected {
+  background-color: #fdedec;
+  color: var(--color-danger);
+  border-color: #f5b7b1;
+}
+
+/* =====================================================
+   FORM
+   ===================================================== */
+
+/* Three columns on desktop, one on mobile */
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--color-text-label);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+  background-color: #faf9f7;
+  border: 1px solid #d5cfc7;
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.93rem;
+  padding: 0.55rem 0.85rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  width: 100%;
+}
+
+input[type="text"]::placeholder {
+  color: #b8b0a6;
+  font-size: 0.88rem;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-red);
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.12);
+  background-color: #fff;
+}
+
+.form-actions {
+  margin-top: 1.1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: background-color var(--transition), transform var(--transition),
+              box-shadow var(--transition), opacity var(--transition);
+  white-space: nowrap;
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+/* Disabled state — all button variants */
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+/* Small variant — used inside table rows */
+.btn-sm {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.68rem;
+  border-radius: 4px;
+}
+
+/* Primary — barber red, main CTA */
+.btn-primary {
+  background-color: var(--color-red);
+  color: #fff;
+  border-color: var(--color-red);
+  box-shadow: 0 2px 6px rgba(192, 57, 43, 0.3);
+}
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-red-light);
+  border-color: var(--color-red-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(192, 57, 43, 0.35);
+}
+
+/* Info — advance to waiting */
+.btn-info {
+  background-color: var(--color-info);
+  color: #fff;
+  border-color: var(--color-info);
+}
+.btn-info:hover:not(:disabled) {
+  background-color: var(--color-info-light);
+  border-color: var(--color-info-light);
+}
+
+/* Warning — start service */
+.btn-warning {
+  background-color: var(--color-warning);
+  color: #fff;
+  border-color: var(--color-warning);
+}
+.btn-warning:hover:not(:disabled) {
+  background-color: var(--color-warning-light);
+  border-color: var(--color-warning-light);
+}
+
+/* Success — complete */
+.btn-success {
+  background-color: var(--color-success);
+  color: #fff;
+  border-color: var(--color-success);
+}
+.btn-success:hover:not(:disabled) {
+  background-color: var(--color-success-light);
+  border-color: var(--color-success-light);
+}
+
+/* Danger — cancel (outline style, fills on hover) */
+.btn-danger {
+  background-color: transparent;
+  color: var(--color-danger);
+  border-color: rgba(192, 57, 43, 0.4);
+}
+.btn-danger:hover:not(:disabled) {
+  background-color: var(--color-danger-light);
+  color: #fff;
+  border-color: var(--color-danger-light);
+}
+
+/* =====================================================
+   TABLE
+   ===================================================== */
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  min-width: 640px;
+}
+
+thead {
+  background-color: var(--color-surface-alt);
+}
+
+th {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  padding: 0.7rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+  vertical-align: middle;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover td {
+  background-color: #faf7f4;
+}
+
+/* Single-cell message row (loading / empty) */
+.table-message {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+  padding: 1.75rem 1rem;
+}
+
+.row-id {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.date-cell {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Shown when an appointment has no available transitions */
+.no-actions {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* =====================================================
+   STATE BADGES
+   ===================================================== */
+
+.badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.badge--registered {
+  background-color: #eef2f7;
+  color: #4a6fa5;
+  border: 1px solid #cad5e4;
+}
+
+.badge--waiting {
+  background-color: #eaf4fb;
+  color: var(--color-info);
+  border: 1px solid #aed6f1;
+}
+
+.badge--progress {
+  background-color: #fef9ec;
+  color: var(--color-warning);
+  border: 1px solid #f9e4a0;
+}
+
+.badge--done {
+  background-color: #eafaf1;
+  color: var(--color-success);
+  border: 1px solid #a9dfbf;
+}
+
+.badge--canceled {
+  background-color: #fdedec;
+  color: var(--color-danger);
+  border: 1px solid #f5b7b1;
+}
+
+/* =====================================================
+   MESSAGE BOX
+   ===================================================== */
+
+.message-box {
+  min-height: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Empty state hint shown when no messages exist */
+.message-box:empty::after {
+  content: "Sin mensajes recientes.";
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Individual message item injected by showMessage() */
+.message-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  animation: fadeIn 0.3s ease both;
+}
+
+.message-icon {
+  font-style: normal;
+  font-size: 1rem;
+  flex-shrink: 0;
+  line-height: 1.5;
+}
+
+.message-item--info {
+  background-color: #eaf4fb;
+  border-left: 3px solid var(--color-info);
+  color: #1a5276;
+}
+
+.message-item--success {
+  background-color: #eafaf1;
+  border-left: 3px solid var(--color-success);
+  color: #145a32;
+}
+
+.message-item--error {
+  background-color: #fdedec;
+  border-left: 3px solid var(--color-danger);
+  color: #7b241c;
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.site-footer {
+  text-align: center;
+  padding: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+/* =====================================================
+   ANIMATIONS
+   ===================================================== */
+
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 680px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    justify-content: stretch;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+
+  .card-header {
+    flex-wrap: wrap;
+    padding: 0.75rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .api-status {
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .main-container {
+    padding: 1.25rem 0.85rem 2rem;
+    gap: 1.1rem;
+  }
+
+  .card-body {
+    padding: 1.1rem 1rem;
+  }
+
+  .main-heading {
+    font-size: 1.4rem;
+  }
+
+  th, td {
+    padding: 0.55rem 0.7rem;
+  }
+
+  .actions-cell {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .btn-sm {
+    width: 100%;
+    justify-content: center;
+  }
+}
